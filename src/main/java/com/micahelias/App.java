@@ -2,6 +2,9 @@ package com.micahelias;
 
 import org.lwjgl.opengl.*;
 
+import com.micahelias.core.MangoInstance;
+import com.micahelias.core.MangoTimer;
+import com.micahelias.core.MangoWindow;
 import com.micahelias.opengl.IndexBuffer;
 import com.micahelias.opengl.Shader;
 import com.micahelias.opengl.VertexArray;
@@ -18,40 +21,23 @@ public class App {
 
   public static void main(String[] args) {
 
-    long window; 
 
-    if (!glfwInit()) {
-      System.out.println("Could not start GLFW");
-      System.exit(-1);
-    }
+    MangoInstance.init();
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
-
-    window = glfwCreateWindow(640, 480, "Hello, world", NULL, NULL);
-
-    if (window == NULL) {
-      glfwTerminate();
-      System.exit(-1);
-    }
-
-    glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
-    GL.createCapabilities();
+    MangoWindow window = new MangoWindow(800, 600, "Hello, world!", true);
 
     // Render stuff
 
     float[] positions = {
       -0.5f, -0.5f,
-      0.0f, 0.5f,
+      -0.5f, 0.5f,
+      0.5f, 0.5f,
       0.5f, -0.5f
     };
 
     int[] indeces = {
-      0, 1, 2
+      0, 1, 2,
+      2, 3, 0
     };
 
 
@@ -69,7 +55,7 @@ public class App {
     shader.bind();
     shader.setUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window.getID())) {
       glClear(GL_COLOR_BUFFER_BIT);
 
       shader.bind();
@@ -86,7 +72,7 @@ public class App {
       glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, NULL);
 
 
-      glfwSwapBuffers(window);
+      glfwSwapBuffers(window.getID());
       glfwPollEvents();
 
 
