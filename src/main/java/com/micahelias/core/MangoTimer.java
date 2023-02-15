@@ -19,9 +19,8 @@ public final class MangoTimer {
 
   // Internally update DeltaTime
   static void updateDeltaTime() {
-
     deltaTime = getTime() - lastFrame;
-    lastFrame = deltaTime;
+    lastFrame = getTime();
 
   }
 

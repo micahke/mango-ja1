@@ -1,13 +1,17 @@
 package com.micahelias.core;
 
 import com.micahelias.opengl.GLInitializer;
+import com.micahelias.scene.Scene;
+
 import static com.micahelias.opengl.RenderAPI.*;
 import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.glfw.GLFW.*;
 
 public final class MangoInstance {
 
   private static boolean isRunning;
   private static MangoWindow activeWindow;
+  private static Scene activeScene;
 
   // Engine initialization
   public static void init() {
@@ -18,13 +22,26 @@ public final class MangoInstance {
     isRunning = true;
     while (!activeWindow.shouldClose()) {
 
+      // Poll for input events
+      glfwPollEvents();
+
+      // Update internals
       MangoTimer.updateDeltaTime();
+
+
+      // Update game logic
+      activeScene.update();
+      
 
       // Clear the display
       glClear(GL_COLOR_BUFFER_BIT);
 
+
+      // End of frame stuff
+      glfwSwapBuffers(activeWindow.getID());
+
     }
-    // TODO: cleanup
+    glfwTerminate();
   }
 
   public static void attachWindow(MangoWindow window) {
@@ -37,6 +54,10 @@ public final class MangoInstance {
 
   public static MangoWindow getActiveWindow() {
     return activeWindow;
+  }
+
+  public static void setScene(Scene scene) {
+    activeScene = scene;
   }
 
 }
