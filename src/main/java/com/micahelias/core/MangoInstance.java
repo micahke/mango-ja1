@@ -22,6 +22,9 @@ public final class MangoInstance {
     isRunning = true;
     while (!activeWindow.shouldClose()) {
 
+      // Clear the display
+      glClear(GL_COLOR_BUFFER_BIT);
+
       // Poll for input events
       glfwPollEvents();
 
@@ -31,11 +34,9 @@ public final class MangoInstance {
 
       // Update game logic
       activeScene.update();
-      
 
-      // Clear the display
-      glClear(GL_COLOR_BUFFER_BIT);
-
+      // Render the scene
+      activeScene.render();
 
       // End of frame stuff
       glfwSwapBuffers(activeWindow.getID());

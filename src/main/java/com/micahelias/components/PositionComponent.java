@@ -1,6 +1,5 @@
 package com.micahelias.components;
 
-import com.micahelias.core.MangoTimer;
 import com.micahelias.scene.Scene;
 
 public class PositionComponent extends Component {
@@ -23,8 +22,9 @@ public class PositionComponent extends Component {
 
   @Override
   public void init(Scene scene) {
+    // Initialize the component
 
-  }
+ }
 
   @Override
   public void update() {
@@ -54,5 +54,7 @@ public class PositionComponent extends Component {
     this.y = y;
 
   }
+
+
 
 }
