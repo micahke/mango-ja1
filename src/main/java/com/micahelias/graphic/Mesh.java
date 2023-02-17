@@ -11,7 +11,7 @@ import com.micahelias.util.Color;
 
 // The base Mesh class
 
-public class Mesh {
+public class Mesh  {
 
   private VertexArray vao;
   private VertexBuffer vbo;
@@ -52,6 +52,8 @@ public class Mesh {
     this.shader = shader;
     this.modelMatrix = new Matrix4f().translate(0, 0, 0);
   }
+
+
 
 
   // +++++++++++++= GETTERS +++++++++++++++++

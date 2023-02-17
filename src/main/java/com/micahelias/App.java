@@ -28,9 +28,9 @@ public class App {
     MangoInstance.setScene(scene);
 
 
-    GameObject object = new GameObject();
+    GameObject object = new GameObject(100, 400);
 
-    Rect2D rect = new Rect2D(0, 0, 100, 100);
+    Rect2D rect = new Rect2D(100, 100);
     rect.setColor(Color.PINK_GLAMOUR);
     object.setMesh(rect);
     object.addComponent(new MeshRenderer());

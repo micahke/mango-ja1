@@ -11,7 +11,7 @@ import com.micahelias.opengl.VertexBufferLayout;
 public class Rect2D extends Mesh {
 
 
-  private int x, y, width, height;
+  private int width, height;
 
 
   private float[] vertices = {
@@ -26,11 +26,9 @@ public class Rect2D extends Mesh {
     2, 3, 0
   };
 
-  public Rect2D(int x, int y, int width, int height) {
+  public Rect2D(int width, int height) {
     super();
 
-    this.x = x;
-    this.y = y;
     this.width = width;
     this.height = height;
 
@@ -55,12 +53,13 @@ public class Rect2D extends Mesh {
 
   }
 
+
   void initVertices() {
     this.vertices = new float[]{
-      x, y,
-      x, y + height,
-      x + width, y + height,
-      x + width, y
+      0, 0,
+      0, height,
+      width, height,
+      width, 0
     };
   }
 

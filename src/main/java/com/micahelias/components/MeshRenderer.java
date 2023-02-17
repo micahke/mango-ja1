@@ -7,6 +7,9 @@ import com.micahelias.util.Color;
 
 import static org.lwjgl.opengl.GL30.*;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
 public class MeshRenderer extends Component {
 
 
@@ -36,8 +39,12 @@ public class MeshRenderer extends Component {
 
     // mesh.getShader().setUniformMat4f("view", camera.getViewMatrix());
     mesh.getShader().setUniformMat4f("projection", camera.getProjectionMatrix());
-    mesh.getShader().setUniformMat4f("model", mesh.getModelMatrix());
 
+
+    Vector3f position = gameObject.getPosition();
+    Matrix4f translation = new Matrix4f().translate(position.x, position.y, 0); 
+    translation = translation.mul(mesh.getModelMatrix());
+    mesh.getShader().setUniformMat4f("model", translation);
 
 
     if (mesh.getIBO() != null) {

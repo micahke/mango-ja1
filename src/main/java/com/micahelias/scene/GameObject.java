@@ -2,6 +2,8 @@ package com.micahelias.scene;
 
 import java.util.ArrayList;
 
+import org.joml.Vector3f;
+
 import com.micahelias.components.Component;
 import com.micahelias.components.PositionComponent;
 import com.micahelias.graphic.Mesh;
@@ -30,8 +32,19 @@ public class GameObject {
     this.mesh = mesh;
     this.renderable = false;
 
-    // by default, add a new position component to the game object
+    // by default, add a new position component to the game object if the user has not set
     addComponent(new PositionComponent(0, 0));
+  }
+
+
+  public GameObject(int x, int y) {
+
+    this.components = new ArrayList<Component>();
+    this.componentBuffer = new ArrayList<Component>();
+    this.renderable = false;
+
+    // by default, add a new position component to the game object if the user has not set
+    addComponent(new PositionComponent(x, y));
   }
 
 
@@ -62,6 +75,16 @@ public class GameObject {
   public <T extends Component> T getComponent(Class<T> componentType) {
     for (int i = 0; i < this.getComponents().size(); i++) {
       Component c = this.getComponents().get(i);
+      if (componentType.isInstance(c)) {
+        return componentType.cast(c);
+      }
+    }
+    return null;
+  }
+
+  public <T extends Component> T getComponentFromBuffer(Class<T> componentType) {
+    for (int i = 0; i < this.componentBuffer.size(); i++) {
+      Component c = this.componentBuffer.get(i);
       if (componentType.isInstance(c)) {
         return componentType.cast(c);
       }
@@ -101,6 +124,20 @@ public class GameObject {
   // Chceck whether the objet is renderable
   public boolean isRenderable() {
     return this.renderable;
+  }
+
+
+  public Vector3f getPosition() {
+    PositionComponent position = getComponent(PositionComponent.class);
+    return position.getPosition();
+  }
+
+  public void setPosition(int x, int y) {
+    PositionComponent position = getComponent(PositionComponent.class);
+    if (position == null) {
+      position = getComponentFromBuffer(PositionComponent.class);
+    }
+    position.setPosition(x, y, 0.0f);
   }
 
 }

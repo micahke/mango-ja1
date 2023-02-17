@@ -1,5 +1,7 @@
 package com.micahelias.components;
 
+import org.joml.Vector3f;
+
 import com.micahelias.scene.Scene;
 
 public class PositionComponent extends Component {
@@ -55,6 +57,15 @@ public class PositionComponent extends Component {
 
   }
 
+  public Vector3f getPosition() {
+    return new Vector3f(x, y, z);
+  }
+
+  public void setPosition(float x, float y, float z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
 
 }
