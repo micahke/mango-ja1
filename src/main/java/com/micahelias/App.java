@@ -1,14 +1,15 @@
 package com.micahelias;
 
 
+
 import com.micahelias.components.MeshRenderer;
 import com.micahelias.core.MangoInstance;
 import com.micahelias.core.MangoWindow;
-import com.micahelias.graphic.Mesh;
-import com.micahelias.graphic.Triangle;
+import com.micahelias.graphic.Rect2D;
 import com.micahelias.scene.Camera2D;
 import com.micahelias.scene.GameObject;
 import com.micahelias.scene.Scene;
+import com.micahelias.util.Color;
 
 
 
@@ -28,7 +29,10 @@ public class App {
 
 
     GameObject object = new GameObject();
-    object.setMesh(new Triangle());
+
+    Rect2D rect = new Rect2D(0, 0, 100, 100);
+    rect.setColor(Color.PINK_GLAMOUR);
+    object.setMesh(rect);
     object.addComponent(new MeshRenderer());
 
     scene.addGameObject(object);

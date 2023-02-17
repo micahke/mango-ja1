@@ -8,6 +8,7 @@ import java.nio.FloatBuffer;
 import java.util.HashMap;
 
 import org.joml.Matrix4f;
+import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 
 public class Shader {
@@ -101,6 +102,16 @@ public class Shader {
   // Set uniforms
   public void setUniform4f(String name, float v0, float v1, float v2, float v3) {
     glUniform4f(getUniformLocation(name), v0, v1, v2, v3);
+  }
+
+
+  public void setUniformVec4(String name, Vector4f vector) {
+    int location = getUniformLocation(name);
+    if (location != -1) {
+      FloatBuffer buffer = BufferUtils.createFloatBuffer(4);
+      vector.get(buffer);
+      glUniform4fv(location, buffer);
+    }
   }
 
 

@@ -7,6 +7,7 @@ import com.micahelias.opengl.Shader;
 import com.micahelias.opengl.VertexArray;
 import com.micahelias.opengl.VertexBuffer;
 import com.micahelias.opengl.VertexBufferLayout;
+import com.micahelias.util.Color;
 
 // The base Mesh class
 
@@ -20,6 +21,8 @@ public class Mesh {
   private Shader shader;
 
   private Matrix4f modelMatrix;
+
+  private Color color;
 
   public Mesh() {
     // default constructor
@@ -50,6 +53,7 @@ public class Mesh {
     this.modelMatrix = new Matrix4f().translate(0, 0, 0);
   }
 
+
   // +++++++++++++= GETTERS +++++++++++++++++
 
   public VertexArray getVao() {
@@ -78,6 +82,14 @@ public class Mesh {
 
   public Matrix4f getModelMatrix() {
     return modelMatrix;
+  }
+
+  public boolean hasColor() {
+    return color != null;
+  }
+
+  public Color getColor() {
+    return color;
   }
 
   // +++++++++++++++++++++++++ SETTERS ++++++++++++++++++++=
@@ -112,5 +124,8 @@ public class Mesh {
     this.modelMatrix = matrix;
   }
 
+  public void setColor(Color color) {
+    this.color = color;
+  }
 
 }

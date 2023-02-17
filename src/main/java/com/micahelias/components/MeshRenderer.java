@@ -3,6 +3,8 @@ package com.micahelias.components;
 import com.micahelias.graphic.Mesh;
 import com.micahelias.scene.Camera2D;
 import com.micahelias.scene.Scene;
+import com.micahelias.util.Color;
+
 import static org.lwjgl.opengl.GL30.*;
 
 public class MeshRenderer extends Component {
@@ -26,9 +28,16 @@ public class MeshRenderer extends Component {
     mesh.getVao().bind();
     mesh.getShader().bind();
 
+    // set mesh color
+    if (mesh.hasColor()) {
+      mesh.getShader().setUniformVec4("color", mesh.getColor().toVector());
+    }
+    
+
     // mesh.getShader().setUniformMat4f("view", camera.getViewMatrix());
     mesh.getShader().setUniformMat4f("projection", camera.getProjectionMatrix());
     mesh.getShader().setUniformMat4f("model", mesh.getModelMatrix());
+
 
 
     if (mesh.getIBO() != null) {
