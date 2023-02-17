@@ -3,6 +3,7 @@ package com.micahelias.scene;
 import java.util.ArrayList;
 
 import com.micahelias.components.MeshRenderer;
+import com.micahelias.util.Color;
 
 import static org.lwjgl.opengl.GL30.*;
 
@@ -62,6 +63,14 @@ public class Scene {
     }
     return null;
   }
+
+  public GameObject getGameObject(String tag) {
+    for (int i = 0; i < this.gameObjects.size(); i++) {
+      GameObject gameObject = this.gameObjects.get(i);
+      if (gameObject.getTag().equals(tag)) return gameObject;
+    }
+    return null;
+  }
   
   // Set the background color
   // Takes in red, green, blue, and alpha
@@ -76,5 +85,11 @@ public class Scene {
     glClearColor(r, g, b, 1.0f);
   }
 
+  // Set the background color
+  // Takes in red, green, blue and alpha is automatically 1.0
+  public void setBackgroundColor(Color color) {
+
+    glClearColor(color.red, color.green, color.blue, color.alpha);
+  }
 }
 

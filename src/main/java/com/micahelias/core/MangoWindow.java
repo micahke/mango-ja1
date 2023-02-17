@@ -2,6 +2,8 @@ package com.micahelias.core;
 
 import static org.lwjgl.glfw.GLFW.*;
 
+import org.joml.Vector2f;
+import org.joml.Vector2i;
 import org.lwjgl.opengl.GL;
 
 public class MangoWindow {
@@ -66,6 +68,11 @@ public class MangoWindow {
 
   public String getTitle() {
     return this.title;
+  }
+
+
+  public Vector2i getDimensions() {
+    return new Vector2i(this.width, this.height);
   }
 
 }

@@ -61,11 +61,16 @@ public class PositionComponent extends Component {
     return new Vector3f(x, y, z);
   }
 
+
   public void setPosition(float x, float y, float z) {
     this.x = x;
     this.y = y;
     this.z = z;
   }
 
+  public void translate2D(float x, float y) {
+    this.x += x;
+    this.y += y;
+  }
 
 }

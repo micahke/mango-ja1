@@ -15,6 +15,7 @@ public class GameObject {
   private Scene scene;
   private Mesh mesh;
   private boolean renderable;
+  private String tag;
 
   public GameObject() {
     this.components = new ArrayList<Component>();
@@ -138,6 +139,14 @@ public class GameObject {
       position = getComponentFromBuffer(PositionComponent.class);
     }
     position.setPosition(x, y, 0.0f);
+  }
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
+  public String getTag() {
+    return this.tag;
   }
 
 }

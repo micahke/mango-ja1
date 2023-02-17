@@ -5,16 +5,21 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public final class MangoTimer {
 
-  private static double deltaTime;
-  private static double lastFrame = 0;
+  private static float deltaTime;
+  private static float lastFrame = 0;
+  private static float timeDilation = 1;
 
 
-  public static double getTime() {
-    return glfwGetTime();
+  public static float getTime() {
+    return (float)glfwGetTime();
   }
 
-  public static double deltaTime() {
-    return deltaTime;
+  public static float deltaTime() {
+    return timeDilation * deltaTime;
+  }
+
+  public static void setTimeDilation(float multiplier) {
+    timeDilation = multiplier;
   }
 
   // Internally update DeltaTime
@@ -24,7 +29,6 @@ public final class MangoTimer {
 
   }
 
-  
 
 
 }

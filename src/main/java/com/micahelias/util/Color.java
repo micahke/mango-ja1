@@ -7,14 +7,17 @@ public class Color {
 
   public static final Color LIGHT_GREEN = new Color(85, 239, 196);
   public static final Color PINK_GLAMOUR = new Color(255, 118, 117);
-
+  public static final Color DRACULA = new Color(45, 52, 54);
+  public static final Color ELECTRON_BLUE = new Color(9, 132, 227);
+  public static final Color MINT_LEAF = new Color(0, 184, 148);
+  public static final Color BRIGHT_YARROW = new Color(253, 203, 110);
 
   // Members
 
-  private float red;
-  private float green;
-  private float blue;
-  private float alpha;
+  public float red;
+  public float green;
+  public float blue;
+  public float alpha;
 
 
   public Color(float red, float green, float blue) {
