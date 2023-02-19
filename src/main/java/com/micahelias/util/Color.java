@@ -11,6 +11,7 @@ public class Color {
   public static final Color ELECTRON_BLUE = new Color(9, 132, 227);
   public static final Color MINT_LEAF = new Color(0, 184, 148);
   public static final Color BRIGHT_YARROW = new Color(253, 203, 110);
+  public static final Color WHITE = new Color(0, 0, 0);
 
   // Members
 

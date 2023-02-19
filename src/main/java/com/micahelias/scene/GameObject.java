@@ -57,19 +57,21 @@ public class GameObject {
   // update all the components in the scene
   public void update() {
 
-    // check for components in buffer
-    if (componentBuffer.size() > 0) {
-      // loop through component buffer
-      for (Component c : componentBuffer) {
-        c.init(scene);
-        components.add(c);
-      }
-      componentBuffer = new ArrayList<Component>();
-    }
 
     for (int i = 0; i < this.components.size(); i++) {
       Component component = this.components.get(i);
       component.update();
+    }
+
+
+    // check for components in buffer
+    if (componentBuffer.size() > 0) {
+      // loop through component buffer
+      for (Component c : componentBuffer) {
+        components.add(c);
+        c.init(scene);
+      }
+      componentBuffer = new ArrayList<Component>();
     }
   }
 
